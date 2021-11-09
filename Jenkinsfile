@@ -40,6 +40,7 @@ pipeline {
              steps {
                  sh """ sed -i 's;prihuda22/sosial-media-sp3:v2;$DOCKER_REGISTRY/$DOCKER_IMAGE:${BUILD_NUMBER};g' ./big-project/facebook-staging/facebook.yaml """
                  sh "kubectl apply -f ./big-project/staging.json"
+                 sh "kubectl apply -f ./big-project/facebook-staging/configmap.yaml"
     	         sh "kubectl apply -f ./big-project/facebook-staging/facebook.yaml"
                  sh "kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/aws/deploy.yaml"
                  sh "kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission"
