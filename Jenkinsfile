@@ -1,5 +1,5 @@
 env.DOCKER_REGISTRY = 'prihuda22'
-env.DOCKER_IMAGE = 'sosial-media-bp'
+env.DOCKER_IMAGE = 'sosial-media-bp-prod'
 
 
 pipeline {
@@ -38,13 +38,13 @@ pipeline {
 
          stage('Deploy Image to Kubernetes') { 
              steps {
-                 sh """ sed -i 's;prihuda22/sosial-media-sp3:v2;$DOCKER_REGISTRY/$DOCKER_IMAGE:${BUILD_NUMBER};g' ./big-project/facebook-staging/facebook.yaml """
-                 sh "kubectl apply -f ./big-project/staging.json"
-                 sh "kubectl apply -f ./big-project/facebook-staging/configmap.yaml"
-    	         sh "kubectl apply -f ./big-project/facebook-staging/facebook.yaml"
+                 sh """ sed -i 's;prihuda22/sosial-media-sp3:v2;$DOCKER_REGISTRY/$DOCKER_IMAGE:${BUILD_NUMBER};g' ./big-project/facebook/facebook.yaml """
+                 sh "kubectl apply -f ./big-project/prod.json"
+                 sh "kubectl apply -f ./big-project/facebook/configmap.yaml"
+    	         sh "kubectl apply -f ./big-project/facebook/facebook.yaml"
                  sh "kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/aws/deploy.yaml"
                  sh "kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission"
-                 sh "kubectl apply -f ./big-project/ingress-staging/ingress.yaml"
+                 sh "kubectl apply -f ./big-project/ingress/ingress.yaml"
              }
          }
 
