@@ -1,5 +1,5 @@
 env.DOCKER_REGISTRY = 'prihuda22'
-env.DOCKER_IMAGE = 'sosial-media-bp'
+env.DOCKER_IMAGE = 'sosial-media-bp-stag'
 
 
 pipeline {
