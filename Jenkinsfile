@@ -42,8 +42,6 @@ pipeline {
                  sh "kubectl apply -f ./big-project/prod.json"
                  sh "kubectl apply -f ./big-project/facebook/configmap.yaml"
     	         sh "kubectl apply -f ./big-project/facebook/facebook.yaml"
-                 sh "kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/aws/deploy.yaml"
-                 sh "kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission"
                  sh "kubectl apply -f ./big-project/ingress/ingress.yaml"
              }
          }
