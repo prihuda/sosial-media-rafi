@@ -58,10 +58,10 @@ WORKDIR /var/www/html
 COPY --chown=nobody . /var/www/html/
 
 # Expose the port nginx is reachable on
-EXPOSE 8083
+EXPOSE 8081
 
 # Let supervisord start nginx & php-fpm
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
-HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8083/fpm-ping
+HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8081/fpm-ping
