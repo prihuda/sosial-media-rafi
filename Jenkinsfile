@@ -42,7 +42,6 @@ pipeline {
                  sh "kubectl apply -f ./big-project/staging.json"
                  sh "kubectl apply -f ./big-project/facebook-staging/configmap.yaml"
     	         sh "kubectl apply -f ./big-project/facebook-staging/facebook.yaml"
-                 sh "kubectl apply -f ./big-project/ingress-staging/ingress.yaml"
              }
          }
 
